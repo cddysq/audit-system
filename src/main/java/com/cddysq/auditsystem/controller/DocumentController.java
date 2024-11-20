@@ -5,6 +5,7 @@ import com.cddysq.auditsystem.eunms.RoleEnum;
 import com.cddysq.auditsystem.service.DocumentService;
 import com.cddysq.auditsystem.vo.DocumentVo;
 import com.cddysq.auditsystem.vo.UserVo;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -17,8 +18,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.util.UriUtils;
 
-import javax.servlet.http.HttpSession;
+import java.nio.charset.StandardCharsets;
+
 
 /**
  * @author <a href="mailto:tanghaotian@alu.uestc.edu.cn" rel="nofollow">cddysq</a>
@@ -88,10 +91,13 @@ public class DocumentController {
             return ResponseEntity.notFound().build();
         }
 
+        // 对文件名进行URL编码以确保兼容性
+        String encodedFileName = UriUtils.encode(document.getDocumentName(), StandardCharsets.UTF_8);
+
         // 设置响应头
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-        headers.setContentDispositionFormData("attachment", document.getDocumentName());
+        headers.setContentDispositionFormData("attachment", encodedFileName);
 
         // 返回文件内容
         return new ResponseEntity<>(document.getContent(), headers, HttpStatus.OK);

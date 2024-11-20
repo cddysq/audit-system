@@ -1,6 +1,7 @@
 server:
   tomcat:
     uri-encoding: UTF-8
+  port: 8080
 spring:
   application:
     name: audit-system
@@ -21,3 +22,5 @@ spring:
 
 mybatis-plus:
   mapper-locations: classpath:/mapper/*.xml
+  global-config:
+    banner: false

@@ -3,6 +3,7 @@ package com.cddysq.auditsystem.controller;
 import com.cddysq.auditsystem.dao.User;
 import com.cddysq.auditsystem.service.UserService;
 import com.cddysq.auditsystem.vo.UserVo;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpSession;
 
 /**
  * @author <a href="mailto:tanghaotian@alu.uestc.edu.cn" rel="nofollow">cddysq</a>
