@@ -110,6 +110,16 @@
         </plugins>
         <resources>
             <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.yml</include>
+                    <include>**/*.xml</include>
+                    <include>**/*.tld</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
                 <!-- 源文件夹 -->
                 <directory>src/main/webapp</directory>
                 <!-- 指定编译到的路径为 META-INF/resources -->
